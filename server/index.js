@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const config = require('./config/key');
+const { User } = require('./models/user');
+
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test', {
+mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, 
 	useUnifiedTopology: true, 
 	useCreateIndex: true, 
@@ -14,3 +19,10 @@ mongoose.connect('mongodb://localhost/test', {
 	app.listen(port, () => {
 		console.log(`Server Listening on ${port}`)
 	});
+
+	// bodyParser
+	app.use(bodyParser.urlencoded({ extended: true }));  
+	app.use(bodyParser.json());
+
+
+	app.use('/api/users', require('./routes/users'));
