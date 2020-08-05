@@ -51,7 +51,28 @@ router.post('/login', (req, res) => {
 
 // 인증
 router.get('/auth', auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.roll === 0 ? false : true, // 0 : 일반 유저, 그외 : 관리자
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    roll: req.user.role,
+    image: req.user.image
+  })
+})
 
+
+// 로그아웃
+router.get('/logout', auth, (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { token: '' },
+    (err, user) => {
+      if(err) return res.json({ success: false, err })
+      return res.status(200).send({ success: true })
+    }
+  )
 })
 
 module.exports = router;
