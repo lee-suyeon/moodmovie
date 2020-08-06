@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
 // 로그인
 router.post('/login', (req, res) => {
   // 1. DB에서 요청된 email을 찾는다
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ 'email': req.body.email }, (err, user) => {
     if(!user){
       console.log(user);
       return res.json({
