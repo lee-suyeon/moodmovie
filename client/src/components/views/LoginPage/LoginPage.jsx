@@ -32,6 +32,7 @@ function LoginPage(props) {
       .then(response => {
         if(response.payload.loginSuccess){
           props.history.push('/')
+          console.log('login',response.data)
         } else {
           alert('login 실패');
         }

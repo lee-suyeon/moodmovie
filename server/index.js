@@ -4,7 +4,6 @@ const port = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
-const { User } = require('./models/user');
 
 
 const mongoose = require('mongoose');
@@ -23,6 +22,8 @@ mongoose.connect(config.mongoURI, {
 	// bodyParser
 	app.use(bodyParser.urlencoded({ extended: true }));  
 	app.use(bodyParser.json());
+// cookieParser
+	app.use(cookieParser());
 
 
 	app.use('/api/users', require('./routes/users'));

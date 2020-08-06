@@ -62,7 +62,7 @@ userSchema.methods.comparePassword = function(plainPassword, cb){
 userSchema.methods.generateToken = function (cb) {
   var user = this;
   let token = jwt.sign(user._id.toHexString(), 'secretToken')
-  user.toke = token;
+  user.token = token;
   user.save(function(err, user){
     if(err) return cb(err)
     cb(null, user)
@@ -70,7 +70,7 @@ userSchema.methods.generateToken = function (cb) {
 }
 
 // 복호화된 토큰으로 유저 찾기
-userSchema.methods.findByToken = function (token, cb) {
+userSchema.statics.findByToken = function (token, cb) {
   var user = this;
   
   // 1. 토큰을 복호화 한다. 

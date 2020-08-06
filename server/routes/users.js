@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require("../models/user");
+const { User } = require("../models/User");
 const { auth } = require('../middleware/auth');
 
 
@@ -65,14 +65,12 @@ router.get('/auth', auth, (req, res) => {
 
 // 로그아웃
 router.get('/logout', auth, (req, res) => {
-  User.findOneAndUpdate(
-    { _id: req.user._id },
+  User.findOneAndUpdate({ _id: req.user._id },
     { token: '' },
     (err, user) => {
       if(err) return res.json({ success: false, err })
       return res.status(200).send({ success: true })
-    }
-  )
+    })
 })
 
 module.exports = router;
