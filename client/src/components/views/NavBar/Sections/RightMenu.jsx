@@ -6,19 +6,20 @@ import { useSelector } from 'react-redux';
 import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 
-function LeftNav({ mode, history }) {
+function RightMenu({ mode, history }) {
   const user = useSelector(state => state.user);
 
   const onClickLogout = () => {
-    Axios.get('api/users/logout')
+    console.log('click');
+    Axios.get("api/users/logout")
       .then(response => {
-        if(response.data.success){
-          history.push('/');
+        if(response.status === 200){
+          history.push("/login");
         } else {
-          alert('로그아웃을 실패하였습니다.')
+          alert("로그아웃 실패")
         }
-      })
-  }
+      });
+  };
 
   if(user.userData && !user.userData.isAuth){
     return (
@@ -45,4 +46,4 @@ function LeftNav({ mode, history }) {
   }
 }
 
-export default withRouter(LeftNav);
+export default withRouter(RightMenu);

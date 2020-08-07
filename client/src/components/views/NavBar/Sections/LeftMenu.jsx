@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { HomeOutlined, SmileOutlined } from '@ant-design/icons';
 
-function RightNav({ mode }) {
+function LeftMenu ({ mode }) {
+  
   return (
     <div style={{ display: "flex" }}>
       <Menu mode={mode}>
@@ -20,4 +21,4 @@ function RightNav({ mode }) {
   )
 }
 
-export default RightNav
+export default LeftMenu

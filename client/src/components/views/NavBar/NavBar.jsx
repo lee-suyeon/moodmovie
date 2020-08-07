@@ -1,13 +1,13 @@
 import React from 'react';
-import RightNav from './Sections/RightNav';
-import LeftNav from './Sections/LeftNav';
+import LeftMenu from './Sections/LeftMenu';
+import RightMenu from './Sections/RightMenu';
 
 function NavBar() {
   return (
     <nav className="menu" style={{ position: "fixed", zIndex: 1, width: "100%" }}>
       <div className="menu_container" style={{ display: "flex", justifyContent: "space-between"}}>
-        <RightNav mode="horizontal"/>
-        <LeftNav mode="horizontal"/>
+        <LeftMenu mode="horizontal"/>
+        <RightMenu mode="horizontal"/>
       </div>
     </nav>
   )
