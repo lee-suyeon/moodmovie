@@ -2,7 +2,7 @@ import React from 'react';
 import { Tooltip } from 'antd';
 
 const moods = [
-  { id: 1, state: "행복해요", emoji: "😃", color: "#ee5253"},
+  { id: 1, state: "행복해요", emoji: "😃", color: "#ee5253", },
   { id: 2, state: "우울해요", emoji: "😢", color: "#576574"},
   { id: 3, state: "지루해요", emoji: "😪", color: "#e1b12c"},
   { id: 4, state: "배고파요", emoji: "😵", color: "#009432"},
@@ -19,11 +19,13 @@ function LandingPage() {
       <div className="mood" style={{ display: "flex", fontSize: "12rem"}}>
           {moods.map((mood) => { 
             return (
-            <div key={mood.id} className="mood-state">
-              <Tooltip title={mood.state} color={mood.color} >
-                <div style={{ marginRight: "1.2rem"}}>{mood.emoji}</div>
-              </Tooltip>
-            </div>
+            // <Link to>
+              <div key={mood.id} className="mood-state">
+                <Tooltip title={mood.state} color={mood.color} >
+                  <div style={{ marginRight: "1.2rem"}}>{mood.emoji}</div>
+                </Tooltip>
+              </div>
+            // </Link>
             )}
           )
         }
