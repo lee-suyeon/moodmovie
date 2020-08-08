@@ -5,6 +5,7 @@ import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import RecommendPage from './components/views/RecommendPage/RecommendPage';
+import MovieDetailPage from './components/views/MovieDetailPage/MovieDetailPage';
 import NavBar from './components/views/NavBar/NavBar';
 import Auth from './hoc/auth';
 
@@ -16,7 +17,8 @@ function App() {
           <Route exact path='/' component={Auth(LandingPage, null)} />
           <Route exact path='/login' component={Auth(LoginPage, false)} />
           <Route exact path='/register' component={Auth(RegisterPage, false)} />
-          <Route exact path='/recommend' component={Auth(RecommendPage, null)} />
+          <Route exact path='/recommend/:genreId' component={Auth(RecommendPage, null)} />
+          <Route exact path='/movie/:movieId' component={Auth(MovieDetailPage, null)} />
       </Switch>
     </div>
   );

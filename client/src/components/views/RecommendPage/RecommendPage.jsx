@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import MainImage from '../commons/MainImage';
 import { API_KEY, API_URL, IMAGE_URL } from '../../../Config';
 import GridCard from '../commons/GridCard'
@@ -6,17 +7,18 @@ import { Row, Button } from 'antd';
 
 
 
-function RecommendPage() {
+function RecommendPage(props) {
   const [movies, setMovies] = useState([]);
   const [mainMovieImage, setMainMovieImage] = useState(null);
 
-  // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+  let genreId = props.match.params.genreId;
+
   const fetchMovies = (endpoint) => {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
         console.log(response.results); // 4개만 가져오기
-        setMovies([ ...response.results.slice(0, 6) ]);
+        setMovies([ ...response.results.slice(0, 4) ]);
         setMainMovieImage(response.results[0]);
       })
   }
@@ -24,13 +26,13 @@ function RecommendPage() {
 
   useEffect(() => {
     const page = Math.floor(9 * Math.random()) + 1;
-    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=28&page=${page}`;
+    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=${genreId}&page=${page}`;
     fetchMovies(endpoint);
   }, [])
 
   const recommendAgain = () => {
     const page = Math.floor(9 * Math.random()) + 1;
-    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=28&page=${page}`;
+    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=${genreId}&page=${page}`;
     fetchMovies(endpoint);
   }
 
@@ -46,14 +48,15 @@ function RecommendPage() {
           }
 
       <div style={{ width: "85%", margin: "2rem auto",}}>
-        <h2>추천 영화</h2>
+        <h2 style={{ fontSize: "2rem" }}>추천 영화</h2>
         <hr />
         {/* Movie Grid Cards */}
         <Row gutter={[12, 12]} >
         {movies &&
           movies.map((movie) => (
             <React.Fragment key={movie.id}>
-              <GridCard 
+              <GridCard
+                movie
                 movieId={movie.id}
                 title={movie.title}
                 originalTitle={movie.original_title}
@@ -75,4 +78,4 @@ function RecommendPage() {
 
 
 
-export default RecommendPage
+export default withRouter(RecommendPage);
