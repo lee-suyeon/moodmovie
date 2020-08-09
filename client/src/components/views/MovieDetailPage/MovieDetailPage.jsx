@@ -4,18 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import MainImage from '../commons/MainImage'
 import GridCard from '../commons/GridCard'
+import Favorite from './Sections/Favorite';
 
 function MovieDetailPage(props) {
   const [movie, setMovie] = useState([])
   const [cast, setCast] = useState([])
 
-
   let movieId = props.match.params.movieId;
 
-
-  
   useEffect(() => {
-
     let endpointInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=ko`
     let endpointCast = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=ko`
 
@@ -46,6 +43,17 @@ function MovieDetailPage(props) {
 
       {/* body */}
       <div style={{ width: '85%', margin: '1rem auto' }}>
+        
+        {/* favorite button */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Favorite 
+            movieInfo={movie} 
+            movieId={movieId}
+            userFrom={localStorage.getItem('userId')}
+          />
+        </div>
+
+
         <h2 style={{ fontSize: '3rem', fontWeight: 'bold' }}>{movie.title} ({movie.original_title})</h2>
         <p>{movie.tagline}</p>
         <p>{movie.overview}</p>

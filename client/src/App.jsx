@@ -6,6 +6,7 @@ import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import RecommendPage from './components/views/RecommendPage/RecommendPage';
 import MovieDetailPage from './components/views/MovieDetailPage/MovieDetailPage';
+import FavoritePage from './components/views/FavoritePage/FavoritePage';
 import NavBar from './components/views/NavBar/NavBar';
 import Auth from './hoc/auth';
 
@@ -19,6 +20,8 @@ function App() {
           <Route exact path='/register' component={Auth(RegisterPage, false)} />
           <Route exact path='/recommend/:genreId' component={Auth(RecommendPage, null)} />
           <Route exact path='/movie/:movieId' component={Auth(MovieDetailPage, null)} />
+          <Route exact path='/movie/:movieId' component={Auth(MovieDetailPage, null)} />
+          <Route exact path='/favorite' component={Auth(FavoritePage, true)} />
       </Switch>
     </div>
   );

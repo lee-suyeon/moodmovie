@@ -6,7 +6,6 @@ import GridCard from '../commons/GridCard'
 import { Row, Button } from 'antd';
 
 
-
 function RecommendPage(props) {
   const [movies, setMovies] = useState([]);
   const [mainMovieImage, setMainMovieImage] = useState(null);
@@ -25,7 +24,7 @@ function RecommendPage(props) {
   //with_genres
 
   useEffect(() => {
-    const page = Math.floor(9 * Math.random()) + 1;
+    const page = Math.floor(5 * Math.random()) + 1;
     const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=${genreId}&page=${page}`;
     fetchMovies(endpoint);
   }, [])
