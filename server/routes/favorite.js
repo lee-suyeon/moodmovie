@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Favorite } = require('../models/Favorite');
+const { Favorite } = require('../models/favorite');
 
 // 좋아요 숫자
 router.post('/favoriteNumber', (req, res) => {  

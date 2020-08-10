@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const { User } = require('../models/user');
 
 let auth = (req, res, next) => {
   // 1. client 쿠키에서 token을 가져온다.
