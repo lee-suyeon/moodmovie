@@ -9,8 +9,8 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 function LoginPage(props) {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   });
   const { email, password } = inputs;
 
@@ -38,56 +38,56 @@ function LoginPage(props) {
           alert('login 실패');
         }
       })
-  }
+  };
 
   return (
     <div style={{
-      display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column",
-      width: "100%", height: "100vh", fontSize: "1.1rem"
+      display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',
+      width: '100%', height: '100vh', fontSize: '1.1rem'
     }}>
-      <div className="login" style={{ width: "25vw", padding: "3rem", textAlign: "center" }}>
-        <h2 style={{ marginBottom: "2rem" }}>Login</h2>
+      <div className='login' style={{ width: '25vw', padding: '3rem', textAlign: 'center' }}>
+        <h2 style={{ marginBottom: '2rem' }}>Login</h2>
         <form
-          className="login-form"
+          className='login-form'
           onSubmit={onSubmitHandler}
         >
           <Form.Item
-            rules={[{ required: true, message: "이메일을 입력해주세요!" }]}
+            rules={[{ required: true, message: '이메일을 입력해주세요!' }]}
           >
             <Input
               value={email}
               onChange={onInputHandler}
-              name="email"
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="이메일" 
-              autoComplete="off"
+              name='email'
+              prefix={<UserOutlined className='site-form-item-icon' />}
+              placeholder='이메일' 
+              autoComplete='off'
             />
           </Form.Item>
 
           <Form.Item
-            rules={[{ required: true, message: "비밀번호를 입력해주세요!" }]}
+            rules={[{ required: true, message: '비밀번호를 입력해주세요!' }]}
           >
             <Input 
               value={password}
-              name="password"
+              name='password'
               onChange={onInputHandler}
-              type="password"
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              placeholder="비밀번호" 
-              autoComplete="off"
+              type='password'
+              prefix={<LockOutlined className='site-form-item-icon' />}
+              placeholder='비밀번호' 
+              autoComplete='off'
             />
           </Form.Item>
 
           <Button 
-            type="primary" 
-            htmlType="submit" 
-            size="large" 
+            type='primary' 
+            htmlType='submit' 
+            size='large' 
             block
-            style={{ marginBottom: "0.5rem"}}
+            style={{ marginBottom: '0.5rem'}}
             >
             로그인
           </Button>
-          Or <a href="/register">register now!</a>
+          Or <a href='/register'>register now!</a>
         </form>
       </div>
     </div>

@@ -5,7 +5,6 @@ import { Popover } from 'antd';
 import { IMAGE_URL } from '../../../Config';
 
 function FavoritePage() {
-
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
@@ -17,7 +16,6 @@ function FavoritePage() {
       .then(response => {
         if(response.data.success) {
           setFavoriteMovies(response.data.favorites);
-          console.log(response.data.favorites);
         } else {
           alert('영화 정보를 가져오는데 실패했습니다. ')
         }
@@ -35,7 +33,7 @@ function FavoritePage() {
         if(response.data.success){
           fetchFavoredMovie();
         } else {
-          alert("삭제를 실패하였습니다.")
+          alert('삭제를 실패하였습니다.')
         }
       })
   }

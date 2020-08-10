@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <div style={{ paddingTop: '60px', minHeight: 'calc(100vh - 60px)' }}>
+      <div style={{ paddingTop: '60px', minHeight: 'calc(100vh - 60px)'}}>
         <Switch>
           <Route exact path='/' component={Auth(LandingPage, null)} />
           <Route exact path='/login' component={Auth(LoginPage, false)} />

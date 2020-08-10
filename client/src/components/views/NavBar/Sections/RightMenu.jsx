@@ -2,21 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { withRouter } from 'react-router-dom'
-import { useSelector } from 'react-redux';
 import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 
-function RightMenu({ mode, history }) {
-  const user = useSelector(state => state.user);
+function RightMenu({ mode, history, user }) {
 
   const onClickLogout = () => {
     console.log('click');
-    Axios.get("api/users/logout")
+    Axios.get('api/users/logout')
       .then(response => {
         if(response.status === 200){
-          history.push("/login");
+          history.push('/login');
         } else {
-          alert("로그아웃 실패")
+          alert('로그아웃 실패')
         }
       });
   };
@@ -24,23 +22,20 @@ function RightMenu({ mode, history }) {
   if(user.userData && !user.userData.isAuth){
     return (
       <Menu mode={mode}>
-        <Menu.Item key="login" icon={<LoginOutlined />}>
-          <Link to="/login">Sign in</Link>
+        <Menu.Item key='login' icon={<LoginOutlined />}>
+          <Link to='/login'>로그인</Link>
         </Menu.Item>
-        <Menu.Item key="register" icon={<UserAddOutlined />}>
-          <Link to="/register">Sign up</Link>
+        <Menu.Item key='register' icon={<UserAddOutlined />}>
+          <Link to='/register'>가입하기</Link>
         </Menu.Item>
       </Menu>
     )
   } else {
     return (
       <Menu mode={mode}>
-        <Menu.Item key="login" icon={<LogoutOutlined />} onClick={onClickLogout}>
-          Logout
+        <Menu.Item key='login' icon={<LogoutOutlined />} onClick={onClickLogout}>
+          로그아웃
         </Menu.Item>
-        {/* <Menu.Item key="register" icon>
-          <Link to="/register">Register</Link>
-        </Menu.Item> */}
       </Menu>
     )
   }

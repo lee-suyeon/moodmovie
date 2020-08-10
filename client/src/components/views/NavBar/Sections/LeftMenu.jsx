@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
-import { HomeOutlined, SmileOutlined } from '@ant-design/icons';
 
-function LeftMenu ({ mode }) {
-  
+function LeftMenu ({ mode, user }) {
   return (
     <div style={{ display: "flex" }}>
       <Menu mode={mode}>
@@ -14,7 +12,7 @@ function LeftMenu ({ mode }) {
       </Menu>
       <Menu mode={mode}>
         <Menu.Item key="favorite">
-          <Link to="/favorite">❤️ Favorite</Link>
+          <Link to="/favorite">❤️ 보고싶어요 </Link>
         </Menu.Item>
       </Menu>
     </div>

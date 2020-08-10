@@ -13,20 +13,20 @@ function MovieDetailPage(props) {
   let movieId = props.match.params.movieId;
 
   useEffect(() => {
+    window.scrollTo({top: 0 });
+
     let endpointInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=ko`
-    let endpointCast = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=ko`
+    let endpointCast = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
 
     fetch(endpointInfo)
       .then(response => response.json())
       .then(response => {
-        console.log('info',response)
         setMovie(response);
       })
 
     fetch(endpointCast)
       .then(response => response.json())
       .then(response => {
-        console.log('cast',response.cast.slice(0,6))
         setCast(response.cast.slice(0,6));
       })
   }, [])
@@ -55,23 +55,29 @@ function MovieDetailPage(props) {
 
 
         <h2 style={{ fontSize: '3rem', fontWeight: 'bold' }}>{movie.title} ({movie.original_title})</h2>
-        <p>{movie.tagline}</p>
-        <p>{movie.overview}</p>
-        <span>러닝타임 : {movie.runtime} mins</span>
+        <hr />
+        <div className='movie-info' style={{ fontSize: '1.1rem', marginTop: '1.5rem' }}>
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{movie.tagline}</h3>
+          <p>{movie.overview}</p>
+          <p><strong>러닝타임 : </strong>{movie.runtime} mins</p>
+          <p><strong>평점 : </strong>{movie.vote_average}</p>
+        </div>
         
-        <div className="cast" style={{ marginTop: '2rem'}}>
+        <div className='cast' style={{ marginTop: '3rem'}}>
           <h3 style={{ fontSize: '2rem', fontWeight: 'bold' }}>Cast</h3>
           <hr />
           <Row gutter={[12, 12]} >
             {cast &&
               cast.map((cast) => (
                 <React.Fragment key={cast.id}>
-                  <GridCard
-                    cast
-                    title={cast.name}
-                    character={cast.character}
-                    image={cast.profile_path ? `${IMAGE_URL}w400${cast.profile_path}` : null}
-                  />
+                  <Col lg={4} md={8} sm={12} xs={24}>
+                    <GridCard
+                      cast
+                      title={cast.name}
+                      character={cast.character}
+                      image={cast.profile_path ? `${IMAGE_URL}w400${cast.profile_path}` : null}
+                    />
+                  </Col>
                 </React.Fragment>
               ))
             }
