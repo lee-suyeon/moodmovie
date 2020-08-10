@@ -10,14 +10,14 @@ function Favorite({ movieInfo, movieId, userFrom }) {
 
   const movieTitle = movieInfo.title;
   const moviePost = movieInfo.poster_path;
-  const movieRunTime = movieInfo.runtime;
+  const movieRuntime = movieInfo.runtime;
 
   let variables = {
     userFrom,
     movieId,
     movieTitle,
     moviePost,
-    movieRunTime
+    movieRuntime,
   }
 
   useEffect(() => {
