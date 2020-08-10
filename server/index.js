@@ -15,16 +15,26 @@ mongoose.connect(config.mongoURI, {
 }).then(() => console.log('MongoDb connected'))
 	.catch(err => console.log(err));
 	
-	app.listen(port, () => {
-		console.log(`Server Listening on ${port}`)
-	});
 
-	// bodyParser
-	app.use(bodyParser.urlencoded({ extended: true }));  
-	app.use(bodyParser.json());
+
+// bodyParser
+app.use(bodyParser.urlencoded({ extended: true }));  
+app.use(bodyParser.json());
 // cookieParser
-	app.use(cookieParser());
+app.use(cookieParser());
 
+app.use('/api/users', require('./routes/users'));
+app.use('/api/favorite', require('./routes/favorite'));
 
-	app.use('/api/users', require('./routes/users'));
-	app.use('/api/favorite', require('./routes/favorite'));
+if (process.env.NODE_ENV === 'production'){
+
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+	});
+}
+
+app.listen(port, () => {
+	console.log(`Server Listening on ${port}`)
+});
