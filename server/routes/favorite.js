@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Favorite } = require("../models/Favorite");
+const { Favorite } = require('../models/Favorite');
 
 // 좋아요 숫자
 router.post('/favoriteNumber', (req, res) => {  
@@ -18,7 +18,7 @@ router.post('/favoriteNumber', (req, res) => {
 // 좋아요 상태
 router.post('/favorited', (req, res) => {  
   // 사용자가 이 영화를 favorite 리스트에 넣었는지 정보를 DB에서 가져오기
-  Favorite.find({ 'movieId': req.body.movieId, "userFrom": req.body.userFrom })
+  Favorite.find({ 'movieId': req.body.movieId, 'userFrom': req.body.userFrom })
     .exec(( err, info) => {
       if(err) return res.status(400).send(err)
 
