@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
-app.use('/api/favorite', require('./routes/favorite'));
+app.use('/api/favorite', require('./routes/favorites'));
 
 if (process.env.NODE_ENV === 'production'){
 
