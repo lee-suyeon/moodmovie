@@ -15,7 +15,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
     // 서버에서 유저의 상태를 요청한다.
     useEffect(() => {
       dispatch(auth()).then(response => {
-        console.log('인증체크', response)
         // 로그인 X
         if(!response.payload.isAuth){
           if(option){

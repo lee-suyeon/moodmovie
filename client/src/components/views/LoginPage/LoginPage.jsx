@@ -33,7 +33,6 @@ function LoginPage(props) {
         if(response.payload.loginSuccess){
           window.localStorage.setItem('userId', response.payload.userId);
           props.history.push('/')
-          console.log('login',response.data)
         } else {
           alert('login 실패');
         }

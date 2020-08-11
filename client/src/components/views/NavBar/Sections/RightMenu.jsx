@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 
-function RightMenu({ mode, history, user }) {
+function RightMenu({ mode, history, user, location }) {
 
   const onClickLogout = () => {
     console.log('click');
@@ -21,7 +21,7 @@ function RightMenu({ mode, history, user }) {
 
   if(user.userData && !user.userData.isAuth){
     return (
-      <Menu mode={mode}>
+      <Menu mode={mode} selectedKeys={[ location.pathname ]}>
         <Menu.Item key='login' icon={<LoginOutlined />}>
           <Link to='/login'>로그인</Link>
         </Menu.Item>
@@ -32,9 +32,9 @@ function RightMenu({ mode, history, user }) {
     )
   } else {
     return (
-      <Menu mode={mode}>
+      <Menu mode={mode} selectedKeys={[ location.pathname ]}>
         <Menu.Item key='login' icon={<LogoutOutlined />} onClick={onClickLogout}>
-          로그아웃
+        <Link to='/logout'>로그아웃</Link>
         </Menu.Item>
       </Menu>
     )

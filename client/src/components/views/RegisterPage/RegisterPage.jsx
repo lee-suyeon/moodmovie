@@ -24,7 +24,6 @@ function RegisterPage(props) {
   const { name, email, password, confirmPassword } = inputs;
 
   const onInputHandler = useCallback((e) => {
-    console.log(e.target);
     setInputs({
       ...inputs,
       [e.target.name] : e.target.value,
@@ -33,7 +32,6 @@ function RegisterPage(props) {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log('click')
 
     if(password !== confirmPassword){
       return alert('비밀번호가 일치하지 않습니다!');
