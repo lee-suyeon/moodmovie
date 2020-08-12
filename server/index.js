@@ -38,3 +38,10 @@ if (process.env.NODE_ENV === 'production'){
 app.listen(port, () => {
 	console.log(`Server Listening on ${port}`)
 });
+
+
+const http = require("http");
+
+setInterval(function () {
+	http.get('https://mood-movie.herokuapp.com/');
+}, 600000);
